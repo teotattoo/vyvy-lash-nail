@@ -1,0 +1,33 @@
+backend:
+
+  name: git-gateway
+
+  branch: main
+
+media_folder: "images/uploads"
+
+public_folder: "/images/uploads"
+
+collections:
+
+  - name: "website"
+
+    label: "Website"
+
+    files:
+
+      - name: "site"
+
+        label: "Thông tin website"
+
+        file: "content/site.json"
+
+        fields:
+
+          - { label: "Tên tiệm", name: "name", widget: "string" }
+
+          - { label: "Giới thiệu", name: "about", widget: "text" }
+
+          - { label: "Điện thoại", name: "phone", widget: "string" }
+
+          - { label: "Instagram", name: "instagram", widget: "string", required: false }
