@@ -1,6 +1,7 @@
 backend:
-  name: git-gateway
-  branch: main
+name: github
+repo: teotattoo/vyvy-lash-nail
+branch: main
 
 locale: nl
 media_folder: "assets/uploads"
