@@ -1,33 +1,83 @@
 backend:
-
   name: git-gateway
-
   branch: main
 
-media_folder: "images/uploads"
-
-public_folder: "/images/uploads"
+locale: nl
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
 
 collections:
-
   - name: "website"
-
-    label: "Website"
-
+    label: "Website-inhoud"
     files:
-
       - name: "site"
-
-        label: "Thông tin website"
-
+        label: "Alle teksten, prijzen en foto's"
         file: "content/site.json"
-
+        format: "json"
         fields:
-
-          - { label: "Tên tiệm", name: "name", widget: "string" }
-
-          - { label: "Giới thiệu", name: "about", widget: "text" }
-
-          - { label: "Điện thoại", name: "phone", widget: "string" }
-
-          - { label: "Instagram", name: "instagram", widget: "string", required: false }
+          - label: "Bedrijfsgegevens"
+            name: "business"
+            widget: "object"
+            fields:
+              - {label: "Bedrijfsnaam", name: "name", widget: "string"}
+              - {label: "Adres", name: "address", widget: "string"}
+              - {label: "Telefoon zoals zichtbaar", name: "phone_display", widget: "string"}
+              - {label: "Telefoon zonder spaties", name: "phone_link", widget: "string", hint: "Bijvoorbeeld +31635669471"}
+              - {label: "Instagram gebruikersnaam", name: "instagram", widget: "string", hint: "Zonder @"}
+              - {label: "Standaard WhatsApp-bericht", name: "booking_message", widget: "text"}
+          - label: "Introductie"
+            name: "intro"
+            widget: "object"
+            fields:
+              - {label: "Kleine titel Nederlands", name: "eyebrow_nl", widget: "string"}
+              - {label: "Kleine titel Engels", name: "eyebrow_en", widget: "string"}
+              - {label: "Hoofdtitel Nederlands", name: "title_nl", widget: "string"}
+              - {label: "Hoofdtitel Engels", name: "title_en", widget: "string"}
+              - {label: "Tekst Nederlands", name: "text_nl", widget: "text"}
+              - {label: "Tekst Engels", name: "text_en", widget: "text"}
+          - label: "Diensten"
+            name: "services"
+            widget: "list"
+            summary: "{{fields.title_nl}}"
+            fields:
+              - {label: "Naam Nederlands", name: "title_nl", widget: "string"}
+              - {label: "Naam Engels", name: "title_en", widget: "string"}
+              - {label: "Beschrijving Nederlands", name: "text_nl", widget: "text"}
+              - {label: "Beschrijving Engels", name: "text_en", widget: "text"}
+              - {label: "Foto", name: "image", widget: "image"}
+          - label: "Prijzen"
+            name: "prices"
+            widget: "object"
+            fields:
+              - {label: "Opmerking Nederlands", name: "note_nl", widget: "text"}
+              - {label: "Opmerking Engels", name: "note_en", widget: "text"}
+              - label: "Lashes prijzen"
+                name: "lashes"
+                widget: "list"
+                summary: "{{fields.name}} — {{fields.price}}"
+                fields:
+                  - {label: "Behandeling", name: "name", widget: "string"}
+                  - {label: "Prijs", name: "price", widget: "string"}
+              - label: "Nails prijzen"
+                name: "nails"
+                widget: "list"
+                summary: "{{fields.name}} — {{fields.price}}"
+                fields:
+                  - {label: "Behandeling", name: "name", widget: "string"}
+                  - {label: "Prijs", name: "price", widget: "string"}
+          - label: "Over ons"
+            name: "about"
+            widget: "object"
+            fields:
+              - {label: "Titel Nederlands", name: "title_nl", widget: "string"}
+              - {label: "Titel Engels", name: "title_en", widget: "string"}
+              - {label: "Tekst Nederlands", name: "text_nl", widget: "text"}
+              - {label: "Tekst Engels", name: "text_en", widget: "text"}
+              - {label: "Foto", name: "image", widget: "image"}
+          - label: "Galerij"
+            name: "gallery"
+            widget: "list"
+            summary: "{{fields.alt}}"
+            fields:
+              - {label: "Foto", name: "image", widget: "image"}
+              - {label: "Korte beschrijving", name: "alt", widget: "string"}
